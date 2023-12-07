@@ -1,0 +1,11 @@
+{
+  "name": "cardano-coin-selection",
+  "license": "MIT",
+  "author": "lixiao.dev@gmail.com",
+  "main": "lib/index.js",
+  "dependencies": {
+    "bignumber.js": "^9.1.2",
+    "cardano-message-signing": "https://gitpkg.now.sh/Microsxema/cardano-emurgo-forks/cardano-message-signing?main",
+    "cardano-serialization-lib": "https://gitpkg.now.sh/Microsxema/cardano-emurgo-forks/cardano-serialization-lib?main"
+  }
+}
