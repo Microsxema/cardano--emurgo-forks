@@ -29,7 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dAppUtils = exports.extractKeyHash = exports.assetsToValue = void 0;
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 const CardanoWasm = __importStar(require("cardano-serialization-lib"));
-const CardanoMessage = __importStar(require("cardano-message-signing-in-base64"));
+const CardanoMessage = __importStar(require("cardano-message-signing"));
 const bignumber_js_1 = __importDefault(require("bignumber.js"));
 const signTx_1 = require("./signTx");
 const error_1 = require("./error");
