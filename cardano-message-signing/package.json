@@ -1,0 +1,12 @@
+{
+  "name": "cardano-message-signing",
+  "version": "1.0.1",
+  "description": "Message signing standard for Cardano",
+  "author": "EMURGO",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emurgo/message-signing.git"
+  }
+}

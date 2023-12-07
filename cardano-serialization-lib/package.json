@@ -1,0 +1,12 @@
+{
+  "name": "cardano-serialization-lib",
+  "version": "11.5.0",
+  "description": "(De)serialization functions for the Cardano blockchain along with related utility functions",
+  "author": "EMURGO",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emurgo/cardano-serialization-lib.git"
+  }
+}
