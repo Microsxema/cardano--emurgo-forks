@@ -10,8 +10,6 @@ function load() {
         return loadPromise
     }
 
-    isLibLoaded = true
-
     loadPromise = WebAssembly.instantiate(
         Buffer.from(wasmBase64Lib),
         { '__wbindgen_placeholder__': wasmHeaders },
@@ -19,6 +17,7 @@ function load() {
         .then(({ instance }) => wasmHeaders.setWasm(instance.exports))
         .catch(error => { throw error })
 
+    isLibLoaded = true
     return loadPromise
 }
 
