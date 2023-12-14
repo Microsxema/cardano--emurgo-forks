@@ -51,12 +51,12 @@ exports.ERROR = {
 };
 exports.CARDANO_PARAMS = {
     PROTOCOL_MAGICS: {
-        mainnet: CardanoWasm.NetworkInfo.mainnet().protocol_magic(),
-        testnet: CardanoWasm.NetworkInfo.testnet().protocol_magic(),
+        get mainnet() { return CardanoWasm.NetworkInfo.mainnet().protocol_magic() },
+        get testnet() { return CardanoWasm.NetworkInfo.testnet().protocol_magic() },
     },
     NETWORK_IDS: {
-        mainnet: CardanoWasm.NetworkInfo.mainnet().network_id(),
-        testnet: CardanoWasm.NetworkInfo.testnet().network_id(),
+        get mainnet() { return CardanoWasm.NetworkInfo.mainnet().network_id() },
+        get testnet() { return CardanoWasm.NetworkInfo.testnet().network_id() },
     },
     COINS_PER_UTXO_BYTE: '4310',
     MAX_TX_SIZE: 16384,
@@ -66,4 +66,10 @@ exports.CARDANO_PARAMS = {
 // policyId is 28 bytes, assetName max 32 bytes, together with quantity makes
 // max token size about 70 bytes, max output size is 4000 => 4000 / 70 ~ 50
 exports.MAX_TOKENS_PER_OUTPUT = 50;
-exports.DATA_COST_PER_UTXO_BYTE = CardanoWasm.DataCost.new_coins_per_byte(CardanoWasm.BigNum.from_str(exports.CARDANO_PARAMS.COINS_PER_UTXO_BYTE));
+Object.defineProperty(exports, 'DATA_COST_PER_UTXO_BYTE', {
+    get() {
+        return CardanoWasm.DataCost.new_coins_per_byte(
+            CardanoWasm.BigNum.from_str(exports.CARDANO_PARAMS.COINS_PER_UTXO_BYTE),
+        )
+    },
+})
