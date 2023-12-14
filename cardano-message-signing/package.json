@@ -8,5 +8,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Emurgo/message-signing.git"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3"
   }
 }
