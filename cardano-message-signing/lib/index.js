@@ -10,7 +10,7 @@ function load() {
     }
 
     loadPromise = WebAssembly.instantiate(
-        Buffer.from(wasmBase64Lib),
+        Buffer.from(wasmBase64Lib, 'base64'),
         { '__wbindgen_placeholder__': wasmHeaders },
     )
         .then(({ instance }) => wasmHeaders.setWasm(instance.exports))
