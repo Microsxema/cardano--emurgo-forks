@@ -1,15 +1,15 @@
-window['isWasmCardanoMessageSigningLibLoaded'] = false
+let isLibLoaded = false
 
 const { Buffer } = require("buffer")
 const wasmHeaders = require('./cardano_message_signing')
 const wasmBase64Lib = require('./cardano-message-signing-in-base-64.wasm')
 
 async function load() {
-    if (window['isWasmCardanoMessageSigningLibLoaded']) {
+    if (isLibLoaded) {
         return
     }
 
-    window['isWasmCardanoMessageSigningLibLoaded'] = true
+    isLibLoaded = true
 
     const { instance } = await WebAssembly.instantiate(
         Buffer.from(wasmBase64Lib),
