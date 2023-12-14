@@ -1,4 +1,3 @@
-let isLibLoaded = false
 let loadPromise = null
 
 const { Buffer } = require("buffer")
@@ -6,7 +5,7 @@ const wasmHeaders = require('./cardano_message_signing')
 const wasmBase64Lib = require('./cardano-message-signing-in-base-64.wasm')
 
 function load() {
-    if (isLibLoaded) {
+    if (loadPromise && loadPromise['then']) {
         return loadPromise
     }
 
@@ -17,7 +16,6 @@ function load() {
         .then(({ instance }) => wasmHeaders.setWasm(instance.exports))
         .catch(error => { throw error })
 
-    isLibLoaded = true
     return loadPromise
 }
 
