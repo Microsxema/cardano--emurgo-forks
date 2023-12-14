@@ -1,15 +1,24 @@
+window['isWasmCardanoMessageSigningLibLoaded'] = false
+
+const { Buffer } = require("buffer")
 const wasmHeaders = require('./cardano_message_signing')
 const wasmBase64Lib = require('./cardano-message-signing-in-base-64.wasm')
 
-const wasmModule = new WebAssembly.Module(
-    Buffer.from(wasmBase64Lib, 'base64'),
-)
+async function load() {
+    if (window['isWasmCardanoMessageSigningLibLoaded']) {
+        return
+    }
 
-const wasmInstance = new WebAssembly.Instance(
-    wasmModule,
-    { '__wbindgen_placeholder__': wasmHeaders },
-)
+    window['isWasmCardanoMessageSigningLibLoaded'] = true
 
-wasmHeaders.setWasm(wasmInstance.exports)
+    const { instance } = await WebAssembly.instantiate(
+        Buffer.from(wasmBase64Lib),
+        { '__wbindgen_placeholder__': wasmHeaders },
+    )
+    wasmHeaders.setWasm(instance.exports)
+}
 
-module.exports = wasmHeaders
+module.exports = {
+    load,
+    ...wasmHeaders,
+}

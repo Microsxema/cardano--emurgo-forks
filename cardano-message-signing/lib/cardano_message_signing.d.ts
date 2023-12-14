@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export function wbSetWasm(val: WebAssembly.Exports): void
+export function setWasm(val: WebAssembly.Exports): void
 
 /**
 */

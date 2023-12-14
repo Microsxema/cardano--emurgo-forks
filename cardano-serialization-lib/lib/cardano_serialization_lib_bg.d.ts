@@ -3,7 +3,7 @@
 
 export function hardenDerivation(num: number): number
 
-export function wbSetWasm(val: WebAssembly.Exports): void
+export function setWasm(val: WebAssembly.Exports): void
 
 /**
 * @param {string} password

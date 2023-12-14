@@ -1,15 +1,24 @@
+window['isWasmCardanoSerializationLibLoaded'] = false
+
+const { Buffer } = require('buffer')
 const wasmHeaders = require('./cardano_serialization_lib_bg')
 const wasmBase64Lib = require('./cardano_serialization_lib_bg-in-base-64.wasm')
 
-const wasmModule = new WebAssembly.Module(
-    Buffer.from(wasmBase64Lib, 'base64'),
-)
+async function load() {
+    if (window['isWasmCardanoSerializationLibLoaded']) {
+        return
+    }
 
-const wasmInstance = new WebAssembly.Instance(
-    wasmModule,
-    { './cardano_serialization_lib_bg.js': wasmHeaders },
-)
+    window['isWasmCardanoSerializationLibLoaded'] = true
 
-wasmHeaders.setWasm(wasmInstance.exports)
+    const { instance } = await WebAssembly.instantiate(
+        Buffer.from(wasmBase64Lib),
+        { './cardano_serialization_lib_bg.js': wasmHeaders }
+    )
+    wasmHeaders.setWasm(instance.exports)
+}
 
-module.exports = wasmHeaders
+module.exports = {
+    load,
+    ...wasmHeaders,
+}
