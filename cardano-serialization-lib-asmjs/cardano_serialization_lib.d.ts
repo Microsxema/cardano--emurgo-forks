@@ -1,5 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
+
+export function hardenDerivation(num: number): number
+
 /**
 * @param {string} password
 * @param {string} salt

@@ -3,6 +3,10 @@ function __wbg_set_wasm(val) {
     wasm = val;
 }
 
+function hardenDerivation(num) {
+    return 0x80000000 + num;
+}
+
 const heap = new Array(128).fill(undefined);
 
 heap.push(undefined, null, true, false);
@@ -28866,4 +28870,5 @@ module.exports = {
     __wbindgen_debug_string,
     __wbindgen_throw,
     __wbindgen_memory,
+    hardenDerivation,
 }
